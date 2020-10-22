@@ -7,32 +7,33 @@ import sys, os
 class monoalpha_cipher:
 
     def __init__(self, key):
+        # Uses key to seed the random function
         random.seed(key)
         chars = list(ascii_letters + digits)
         shuffled = chars.copy()
         random.shuffle(shuffled)
+        
+        # Stores the mapped values
         self.char_map = dict(zip(chars, shuffled))
 
     def inv(self):
+        # Returns the corresponding pair from the charater-map
         inv = {v: k for k, v in self.char_map.items()}
         return inv
 
     def encrypt(self, message, temp_char_map):
         encrypted_message = []
+        # append the mapped char
         for letter in message:
             encrypted_message.append(temp_char_map.get(letter, letter))
         return ''.join(encrypted_message)
 
     def decrypt(self, encrp_str):
+        # Decryption is the inverse of encryption
         return self.encrypt(encrp_str, self.inv())
 
 
 def audio_encrypt(filepath, mono_cip):
-    # wav file expected
-    # if filepath[-4:] != ".wav":
-    #     print("Only wav files are supported!")
-    #     return
-
     if Path(filepath).suffix != '.wav':
         print("Only wav files are supported!")
         return
