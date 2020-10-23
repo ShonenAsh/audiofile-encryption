@@ -15,7 +15,7 @@ Encryption techniques for audio files
 ### Usage: Kotlin
 
 #### Build jar:
-`kotlinc MonoAlphabetic.kt -include-runtime -d monoalpha.jar`
+`kotlinc monoaphabetic_audio.kt -include-runtime -d monoalpha.jar`
 
 #### To encrypt:
 `kotlin monoalpha.jar encrypt [audio_file].wav [seed]`
