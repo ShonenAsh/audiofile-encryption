@@ -7,6 +7,7 @@ import kotlin.system.exitProcess
 // static constant
 const val asciiChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
 
+// MonoAlphabetic cipher with random seed passed as key
 class MonoAlphabetic(key: Int) {
     private val charMap = asciiChar.toList().zip(asciiChar.toList().shuffled(Random(key))).toMap()
 
