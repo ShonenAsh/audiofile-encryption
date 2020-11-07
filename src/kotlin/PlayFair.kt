@@ -1,10 +1,10 @@
-package infosec
 const val K_ASCII = 'K'.toInt()
 const val A_ASCII = 'A'.toInt()
+
 class PlayFair(key: String) {
     private val digram = Array(5) { CharArray(5) }
-    private val charMap: Map<Int, Char> = (0..9).toList().associateWith { (it + K_ASCII).toChar() }
-    private val reverseCharMap = charMap.entries.associate { (k, v) -> v to k }
+//    private val charMap: Map<Int, Char> = (0..9).toList().associateWith { (it + K_ASCII).toChar() }
+//    private val reverseCharMap = charMap.entries.associate { (k, v) -> v to k }
 
     init {
         var k = 0
@@ -41,7 +41,7 @@ class PlayFair(key: String) {
         for (i in text.indices) {
             nextChar = text[i]
             if (nextChar.isDigit())
-                nextChar = charMap[nextChar.toString().toInt()]!!
+                nextChar = (nextChar.toString().toInt() + K_ASCII).toChar()
 
             if (nextChar == 'J') nextChar = 'I'
             if (nextChar != prevChar)
@@ -91,7 +91,7 @@ class PlayFair(key: String) {
             if (c != 'X' && c != 'Z') {
                 val d = c.toInt()
                 if (d >= 'K'.toInt() && d <= 'T'.toInt())
-                    parsedDecryptedText += reverseCharMap[c]
+                    parsedDecryptedText += (d - K_ASCII).toString()[0]
                 else
                     parsedDecryptedText += c
             }
