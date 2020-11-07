@@ -4,6 +4,7 @@ Algorithms for encryption techniques
 
 ### Supported Encryption Techniques
 - Monoalphabetic Cipher
+- PlayFair Cipher
 
 ## Audiofile encryption
 ### Python
