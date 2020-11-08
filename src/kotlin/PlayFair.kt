@@ -3,9 +3,6 @@ const val A_ASCII = 'A'.toInt()
 
 class PlayFair(key: String) {
     private val digram = Array(5) { CharArray(5) }
-//    private val charMap: Map<Int, Char> = (0..9).toList().associateWith { (it + K_ASCII).toChar() }
-//    private val reverseCharMap = charMap.entries.associate { (k, v) -> v to k }
-
     init {
         var k = 0
         val alphaMap = BooleanArray(26)
