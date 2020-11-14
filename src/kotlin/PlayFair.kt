@@ -110,11 +110,3 @@ class PlayFair(key: String) {
         return parseCipherText(decryptedText)
     }
 }
-
-fun main() {
-    val pf = PlayFair("MONARCHY")
-    pf.printDigram()
-    val cipherText = pf.encrypt("12345")
-    println(cipherText)
-    println(pf.decrypt(cipherText))
-}
