@@ -1,4 +1,5 @@
 import java.io.File
+import kotlin.system.exitProcess
 
 const val K_ASCII = 'K'.toInt()
 const val A_ASCII = 'A'.toInt()
@@ -142,6 +143,8 @@ fun audioDecrypt(playFair: PlayFair, file: File) {
         return
     }
 
+    println("Decryption started!")
+
     // read lines and decrypt
     val lines = file.readLines().joinToString("")
     val decrypted = playFair.decrypt(lines)
@@ -150,16 +153,39 @@ fun audioDecrypt(playFair: PlayFair, file: File) {
     val bytes = decrypted.chunked(2).map { it.toUpperCase().toInt(16).toByte() }.toByteArray()
     val outFile = File(file.nameWithoutExtension)
     outFile.writeBytes(bytes)
-
+    println("Decryption complete! \nFile saved as " + outFile.name)
 }
 
-fun main() {
-    val pf = PlayFair("MONARCHY")
-    pf.printDigram()
-//    val audioFile = File("./src/examples/sample.wav")
-    val encrypedFile = File("./sample.wav.pfcrp")
-//    println(pf.encrypt("AAAABBBCCCDDDDD29847467118BDBBFFEEFFFFFFFF"))
+fun main(args: Array<String>) {
+    if (args.size != 3) {
+        println("Incorrect number of arguments passed!")
+        return
+    }
 
-//    audioEncrypt(pf, audioFile)
-    audioDecrypt(pf, encrypedFile)
+    val funcType = args[0]
+    val file = File(args[1])
+    val keyword = args[2]
+    if (keyword.matches(".*\\d.*".toRegex())) {
+        println("Keyword cannot have digits")
+        return
+    }
+    if (keyword.length > 25) {
+        println("Keyword too long. Max size = 25")
+        return
+    }
+
+    if (!file.exists()) {
+        println("File doesn't exist!")
+        return
+    }
+
+    val pf = PlayFair(keyword)
+    when (funcType) {
+        "encrypt" -> audioEncrypt(pf, file)
+        "decrypt" -> audioDecrypt(pf, file)
+        else -> {
+            println("Invalid operation! Please refer to the readme file")
+            readLine()
+        }
+    }
 }
