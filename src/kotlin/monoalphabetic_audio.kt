@@ -1,4 +1,3 @@
-package infosec
 
 import java.io.File
 import kotlin.random.Random
