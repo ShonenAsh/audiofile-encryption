@@ -9,15 +9,15 @@ Algorithms for encryption techniques
 ## Audiofile encryption
 ### Python
 
-- To encrypt: `python monoaphabetic_audio.py encrypt [audio_file].wav [seed]`
+- To encrypt: `python [encryption_technique].py encrypt [audio_file].wav [seed/keyword]`
 
-- To decrypt: `python monoaphabetic_audio.py decrypt [encrypted_file].monocrp [seed]`
+- To decrypt: `python [encryption_technique].py decrypt [encrypted_file] [seed/keyword]`
 
 ### Kotlin
 
 #### Build jar:
-`kotlinc monoaphabetic_audio.kt -include-runtime -d monoalpha.jar`
+`kotlinc [encryption_technique].kt -include-runtime -d [encryption_technique].jar`
 
-- To encrypt: `kotlin monoalpha.jar encrypt [audio_file].wav [seed]`
+- To encrypt: `kotlin [encryption_technique].jar encrypt [audio_file].wav [seed/keyword]`
 
-- To decrypt: `kotlin monoalpha.jar decrypt [encrypted_file].monocrp [seed]`
+- To decrypt: `kotlin [encryption_technique].jar decrypt [encrypted_file] [seed/keyword]`
